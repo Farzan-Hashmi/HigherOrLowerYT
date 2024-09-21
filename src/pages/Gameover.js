@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import gameover from "./gameover.module.css";
 import { Button, Stack, Typography } from "@mui/material";
-import { useLocalStorage } from "@mantine/hooks";
 
 export default function Gameover({ isAuth }) {
   let navigate = useNavigate();
