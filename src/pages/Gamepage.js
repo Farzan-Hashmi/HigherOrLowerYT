@@ -77,29 +77,33 @@ function Gamepage() {
       //if new game is true then we get new videos for both video 1 and video 2
       setVs("VS");
       setIsLoading(true);
-      axios.get("https://y52369.deta.dev/").then((res) => {
-        setNumViews1(res.data["video1_views"]);
-        setNumViews2(res.data["video2_views"]);
-        setVideo1(res.data["video1_id"]);
-        setVideo2(res.data["video2_id"]);
-        setConditionButton(true);
-        setAnswer("");
-        setIsLoading(false);
-      });
+      axios
+        .get("https://higherlowerapifinal-production.up.railway.app/")
+        .then((res) => {
+          setNumViews1(res.data["video1_views"]);
+          setNumViews2(res.data["video2_views"]);
+          setVideo1(res.data["video1_id"]);
+          setVideo2(res.data["video2_id"]);
+          setConditionButton(true);
+          setAnswer("");
+          setIsLoading(false);
+        });
     } else {
       //if new game is false then we set video 1 and video 1 views to previous video 2 and video 2 views
       setVs("⬅"); // left arrow represents that previous video 2 is now video 1
       setVideo1(Video2);
       setNumViews1(numViews2);
       setIsLoading(true); //we set isLoading to true so that we can see the spinner
-      axios.get("https://y52369.deta.dev/").then((res) => {
-        setNumViews2(res.data["video2_views"]); // only getting data for new video 2 as video 1 is the previous video 2
-        setVideo2(res.data["video2_id"]);
-        setConditionButton(true); //we set conditionButton to true so that we can see the button
-        setAnswer(""); //right not answer is empty because the user hasn't selected an answer yet
-        setIsLoading(false); //stop spinner
-        setVs("VS"); //show vs between the two videos now that they have finished switching and loading
-      });
+      axios
+        .get("https://higherlowerapifinal-production.up.railway.app/")
+        .then((res) => {
+          setNumViews2(res.data["video2_views"]); // only getting data for new video 2 as video 1 is the previous video 2
+          setVideo2(res.data["video2_id"]);
+          setConditionButton(true); //we set conditionButton to true so that we can see the button
+          setAnswer(""); //right not answer is empty because the user hasn't selected an answer yet
+          setIsLoading(false); //stop spinner
+          setVs("VS"); //show vs between the two videos now that they have finished switching and loading
+        });
     }
   };
 
